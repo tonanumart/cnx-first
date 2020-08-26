@@ -31,8 +31,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -41,13 +50,66 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Database\Customers.cs">
+      <DependentUpon>Exams.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Exams.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Exams.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Exams.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Exams.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Exams.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Exams.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Database\OrderDetails.cs">
+      <DependentUpon>Exams.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Orders.cs">
+      <DependentUpon>Exams.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Products.cs">
+      <DependentUpon>Exams.tt</DependentUpon>
+    </Compile>
     <Compile Include="Interfaces\Repositories\IDatabase.cs" />
-    <Compile Include="Interfaces\Service\IService.cs" />
+    <Compile Include="Interfaces\Service\ISimpleService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\OrderViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <EntityDeploy Include="Database\Exams.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Exams.Designer.cs</LastGenOutput>
+    </EntityDeploy>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Database\" />
-    <Folder Include="ViewModels\" />
+    <None Include="App.Config" />
+    <None Include="Database\Exams.edmx.diagram">
+      <DependentUpon>Exams.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Database\Exams.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Exams.Context.cs</LastGenOutput>
+      <DependentUpon>Exams.edmx</DependentUpon>
+    </Content>
+    <Content Include="Database\Exams.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Exams.edmx</DependentUpon>
+      <LastGenOutput>Exams.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
