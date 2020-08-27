@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using Autofac.Integration.WebApi;
+using Domain.Database;
 using Domain.Interfaces.Service;
 using Service.Implements;
 using System;
@@ -21,6 +22,12 @@ namespace Web.App_Start
             var service = Assembly.GetAssembly(typeof(SimpleService));
             builder.RegisterAssemblyTypes(service)
                 .Where(t => t.Name.EndsWith("Service"))
+                .InstancePerRequest()
+                .AsImplementedInterfaces()
+                .PropertiesAutowired();
+
+            var entities = Assembly.GetAssembly(typeof(ExamsEntities));
+            builder.RegisterAssemblyTypes(entities)
                 .InstancePerRequest()
                 .AsImplementedInterfaces()
                 .PropertiesAutowired();

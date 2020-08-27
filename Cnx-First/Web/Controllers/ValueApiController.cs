@@ -1,4 +1,5 @@
 ﻿using Domain.Interfaces.Service;
+using Domain.ViewModels;
 using Service.Implements;
 using System;
 using System.Collections.Generic;
@@ -17,9 +18,15 @@ namespace Web.Controllers
         [Route("")]
         public IHttpActionResult Get()
         {
-            Service = new SimpleService();
-            var orders = Service.GetOrders();
-            return Ok(orders);
+            var customerOrders = Service.GetCustomerOrder();
+            return Ok(customerOrders);
+        }
+
+        [Route("saveorder")]
+        public IHttpActionResult Post([FromBody] SaveOrderViewModel customerOrders)
+        {
+            Service.SaveOrder(customerOrders);
+            return Ok();
         }
     }
 }

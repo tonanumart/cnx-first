@@ -10,5 +10,8 @@ namespace Domain.Interfaces.Service
     public interface ISimpleService
     {
         List<OrderViewModel> GetOrders();
+        List<CustomerOrderViewModel> GetCustomerOrder();
+
+        void SaveOrder(SaveOrderViewModel customer);
     }
 }

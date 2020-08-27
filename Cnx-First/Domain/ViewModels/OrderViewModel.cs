@@ -10,7 +10,8 @@ namespace Domain.ViewModels
     {
         public string OrderId { get; set; }
         public DateTime? OrderDate { get; set; }
-        public int? CustomerId { get; set; }
-        public string CustomerName { get; set; }
+        public int? TotalItem { get; set; }
+        public int? TotalPrice { get; set; }
+        public List<OrderDetailViewModel> Details { get; set; }
     }
 }
