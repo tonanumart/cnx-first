@@ -5,6 +5,7 @@ using Domain.Interfaces.Service;
 using Service.Implements;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Reflection;
 using System.Web;
@@ -29,7 +30,7 @@ namespace Web.App_Start
             var entities = Assembly.GetAssembly(typeof(ExamsEntities));
             builder.RegisterAssemblyTypes(entities)
                 .InstancePerRequest()
-                .AsImplementedInterfaces()
+                .AsSelf()
                 .PropertiesAutowired();
 
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly()).PropertiesAutowired();

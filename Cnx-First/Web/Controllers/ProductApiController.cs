@@ -1,6 +1,4 @@
 ﻿using Domain.Interfaces.Service;
-using Domain.ViewModels;
-using Service.Implements;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,16 +8,16 @@ using System.Web.Http;
 
 namespace Web.Controllers
 {
-    [RoutePrefix("api/value")]
-    public class ValueApiController : ApiController
+    [RoutePrefix("api/products")]
+    public class ProductApiController : ApiController
     {
         public ISimpleService Service { get; set; }
 
         [Route("")]
         public IHttpActionResult Get()
         {
-            var customerOrders = Service.GetCustomerOrder();
-            return Ok(customerOrders);
+            var products = Service.GetProducts();
+            return Ok(products);
         }
     }
 }

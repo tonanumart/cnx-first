@@ -12,7 +12,7 @@ namespace Domain.Interfaces.Service
     {
         List<CustomerViewModel> GetCustomers();
         CustomerViewModel GetCustomerById(int id);
-        void CreateCustomer(Customers customer);
+        void CreateCustomer(Customers newCustomer);
         void UpdateCustomer(Customers customer);
         void DeleteCustomer(int id);
     }

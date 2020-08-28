@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Implements\CustomerService.cs" />
+    <Compile Include="Implements\OrderService.cs" />
     <Compile Include="Implements\SimpleService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

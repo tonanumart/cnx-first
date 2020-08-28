@@ -28,7 +28,8 @@ namespace Service.Implements
             return entities.Customers.Where(w => w.CustomerID == id).Select(s => new CustomerViewModel()
             {
                 Name = s.Name,
-                Age = s.Age
+                Age = s.Age,
+                Orders = s.Orders.Count
             }).FirstOrDefault();
         }
 

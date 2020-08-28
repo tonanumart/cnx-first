@@ -14,4 +14,13 @@ namespace Domain.ViewModels
         public int? TotalPrice { get; set; }
         public List<OrderDetailViewModel> Details { get; set; }
     }
+
+
+
+    public class EditOrderDetailQuantityViewModel
+    {
+        public string OrderId { get; set; }
+        public int ProductId { get; set; }
+        public int NewQuantity { get; set; }
+    }
 }

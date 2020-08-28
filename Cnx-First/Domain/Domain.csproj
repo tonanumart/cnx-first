@@ -79,13 +79,16 @@
     </Compile>
     <Compile Include="Interfaces\Repositories\IDatabase.cs" />
     <Compile Include="Interfaces\Service\ICustomerService.cs" />
+    <Compile Include="Interfaces\Service\IOrderService.cs" />
     <Compile Include="Interfaces\Service\ISimpleService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\BuyItemViewModel.cs" />
+    <Compile Include="ViewModels\CostomerBuyViewModel.cs" />
     <Compile Include="ViewModels\CustomerOrderViewModel.cs" />
     <Compile Include="ViewModels\CustomerViewModel.cs" />
     <Compile Include="ViewModels\OrderDetailViewModel.cs" />
     <Compile Include="ViewModels\OrderViewModel.cs" />
+    <Compile Include="ViewModels\ProductCustomerViewModel.cs" />
     <Compile Include="ViewModels\SaveOrderViewModel.cs" />
   </ItemGroup>
   <ItemGroup />

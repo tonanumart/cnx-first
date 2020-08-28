@@ -11,38 +11,33 @@ using System.Web.Http;
 
 namespace Web.Controllers
 {
-    [Route("api/Customers")]
+    [RoutePrefix("api/Customers")]
     public class CustomerApiController : ApiController
     {
         public ICustomerService customerService { get; set; }
-        // GET api/<controller>
+
+
+        [Route("")]
+        [HttpGet]
         public IHttpActionResult Get()
         {
             List<CustomerViewModel> customers = customerService.GetCustomers();
             return Ok(customers);
         }
 
-        // GET api/<controller>/5
+        [Route("{id}")]
         public IHttpActionResult Get(int id)
         {
             CustomerViewModel customer = customerService.GetCustomerById(id);
             return Ok(customer);
         }
 
-        // POST api/<controller>
-        public void Post([FromBody] Customers customers)
-        {
-            customerService.CreateCustomer(customers);
-        }
 
-        // PUT api/<controller>/5
-        public void Put(int id, [FromBody] string value)
+        [Route("")]
+        [HttpPost]
+        public void Post(Customers newCustomer)
         {
-        }
-
-        // DELETE api/<controller>/5
-        public void Delete(int id)
-        {
+            customerService.CreateCustomer(newCustomer);
         }
     }
 }

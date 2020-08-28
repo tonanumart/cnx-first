@@ -3,6 +3,7 @@ using Domain.Interfaces.Service;
 using Domain.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,7 +12,8 @@ namespace Service.Implements
 {
     public class SimpleService : ISimpleService
     {
-        ExamsEntities entities { get; set; }
+        public ExamsEntities entities { get; set; }
+
         public List<OrderViewModel> GetOrders()
         {
             var orderList = entities.Orders.Select(s => new OrderViewModel()
@@ -53,8 +55,7 @@ namespace Service.Implements
 
         public void SaveOrder(SaveOrderViewModel customerOrders)
         {
-            var test = new ExamsEntities();
-            var customer = test.Customers.Find(int.Parse(customerOrders.CustomerId));
+            var customer = entities.Customers.Find(int.Parse(customerOrders.CustomerId));
             if (customer == null)
             {
                 int lastestId = entities.Customers.Max(m => m.CustomerID);
@@ -93,12 +94,56 @@ namespace Service.Implements
 
 
 
+        public List<ProductCustomerViewModel> GetProducts()
+        {
+            var products = entities.Products.Select(s => new ProductCustomerViewModel()
+            {
+                ProductId = s.ProductID,
+                ProductName = s.Name,
+                Customers = s.OrderDetails.Select(se => new CostomerBuyViewModel()
+                {
+                    CustomerId = se.Orders.Customers.CustomerID,
+                    CustomerName = se.Orders.Customers.Name,
+                    BuyDate = se.Orders.OrderDate
+                }).ToList()
+            }).ToList();
+
+            return products;
+        }
+
+
+
+
+        public void EditOrderDetailQuantity(string orderId, int productId, int newQuantity)
+        {
+            var orderDetail = entities.OrderDetails
+                .Where(detail => detail.OrderID == orderId
+                && detail.ProductID == productId)
+                .FirstOrDefault();
+            if(newQuantity == 0)
+            {
+                entities.OrderDetails.Remove(orderDetail);
+            }
+            else
+            {
+                orderDetail.Quantity = newQuantity;
+            }
+            entities.SaveChanges();
+
+        }
+
+
+
+
+
+
+
         private string OrderIdGenerate()
         {
             var lastestOrderId = entities.Orders.OrderByDescending(o => o.OrderDate).Select(s => s.OrderID).FirstOrDefault();
             if (lastestOrderId == null) lastestOrderId = "B000";
             var prefixOrderId = lastestOrderId.Substring(0, lastestOrderId.Length - 1);
-            var orderIdConcatNumber = int.Parse(lastestOrderId.Substring(lastestOrderId.Length - 1));
+            var orderIdConcatNumber = int.Parse(lastestOrderId.Substring(lastestOrderId.Length - 1)) + 1;
             return prefixOrderId + orderIdConcatNumber.ToString();
         }
     }
