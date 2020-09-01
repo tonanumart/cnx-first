@@ -8,6 +8,7 @@ namespace Domain.ViewModels
 {
     public class CustomerViewModel
     {
+        public int Id { get; set; }
         public string Name { get; set; }
         public int? Age { get; set; }
         public int Orders { get; set; }

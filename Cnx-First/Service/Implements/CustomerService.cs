@@ -17,6 +17,7 @@ namespace Service.Implements
         {
             return entities.Customers.Select(s => new CustomerViewModel()
             { 
+                Id = s.CustomerID,
                 Name = s.Name,
                 Age = s.Age,
                 Orders = s.Orders.Count()
