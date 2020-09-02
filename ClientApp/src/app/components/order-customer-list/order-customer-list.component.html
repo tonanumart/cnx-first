@@ -2,7 +2,7 @@
   <ul class="list-group list-group-flush">
     <div *ngFor="let customer of customerOrders; let i = index">
       <li class="list-group-item" [class.active]="currentIndex === i"
-      (click)="onClick(i)"
+      (click)="onClick(i, customer)"
       >{{ customer.customerName }}</li>
     </div>
   </ul>

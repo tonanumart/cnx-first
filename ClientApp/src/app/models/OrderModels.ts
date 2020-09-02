@@ -12,6 +12,7 @@ export interface Order {
 
 export interface OrderDetail {
     productName: string;
+    imgUrl?: string;
     quantity: number;
     unitPrice: number;
 }

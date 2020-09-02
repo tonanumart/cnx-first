@@ -1,10 +1,37 @@
 <h1>Order</h1>
 
-<div class="row" style="margin-top: 24px;">
-    <div class="col-4">
-        <app-order-customer-list [customerOrders]="customerOrders"></app-order-customer-list>
+<div class="space"></div>
+
+<div class="row">
+  <div class="col-4">
+    <app-order-customer-list
+      [customerOrders]="customerOrders"
+      (listClick)="onListClick($event)"
+    ></app-order-customer-list>
+  </div>
+
+  <div class="col-8" *ngIf="!!customerSelected">
+    <div class="row">
+      <div class="col-2">
+        <label>Order : </label>
+      </div>
+      <div class="col-10">
+        <app-order-select
+          [orders]="customerSelected.orders"
+          (orderSelected)="detailSelected = $event; isDetailSelected = true"
+        ></app-order-select>
+      </div>
     </div>
-    <div class="col-8">
-        
+
+    <div class="space"></div>
+
+    <div class="row" *ngIf="!!isDetailSelected">
+      <app-order-list style="width: 100%;" [orderDetails]="detailSelected"></app-order-list>
     </div>
+
+
+
+    <!-- <pre>{{customerSelected | json}}</pre> -->
+    <!-- <pre>{{detailSelected | json}}</pre>     -->
+  </div>
 </div>

@@ -1,3 +1,5 @@
-.container {
+.custom-container {
     margin-top: 20px;
+    margin-left: 60px;
+    margin-right: 60px;
 }

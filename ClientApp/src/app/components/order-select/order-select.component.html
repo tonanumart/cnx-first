@@ -1,0 +1,4 @@
+<select class="custom-select" id="inputGroupSelect01" [ngModel]="orderIdSelected" (ngModelChange)="selectedDetail($event)">
+  <option value="" selected>Choose order ID...</option>
+  <option *ngFor="let order of orders" [value]="order.orderId">{{order.orderId}}</option>
+</select>
